@@ -26,8 +26,14 @@ public class MqqtConfig {
         options.setCleanSession(true);
         options.setConnectionTimeout(10);
 
-        System.out.println("Connecting to MQTT Broker: " + brokerUrl);
-        client.connect(options);
+        try {
+            System.out.println("Connecting to MQTT Broker: " + brokerUrl);
+            client.connect(options);
+            System.out.println("Successfully connected to MQTT Broker.");
+        } catch (MqttException e) {
+            System.err.println("Warning: Initial connection to MQTT Broker failed: " + e.getMessage());
+            System.err.println("Spring Boot will continue running; please verify MQTT_BROKER_URL.");
+        }
 
         return client;
     }

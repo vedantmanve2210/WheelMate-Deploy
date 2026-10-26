@@ -2,5 +2,7 @@
 *.vscode
 
 *.env
+*.env*
 *.ini
+!hardware/platformio.ini
 hardware/include/secrets.h
